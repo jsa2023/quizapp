@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: Verdana;
+    font-size: 1.6rem;
+}
+
+#navbar {
+    display: flex;
+    justify-content: space-between;
+    background: #218380;
+    color: #ffffff;
+    padding: 2rem 5rem;
+}
+
+#card {
+    width: 80rem;
+    margin: auto;
+    margin-top: 10rem;
+    border: 0.2rem solid gainsboro;
+    border-radius: 2.5rem;
+}
+
+#welcome {
+    padding: 3rem 2rem;
+}
+
+#title {
+    margin-bottom: 2rem;
+}
+
+#welcome p:nth-child(1) {
+    margin-bottom: 1rem;
+}
+
+#description {
+    margin-bottom: 1rem;
+}
+
+#start-btn {
+    padding: 1rem;
+    background: #218380;
+    color: #ffffff;
+    border: none;
+    border-radius: 0.5rem;
+
+}

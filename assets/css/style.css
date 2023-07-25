@@ -25,15 +25,15 @@ body {
     width: 80rem;
     margin: auto;
     margin-top: 10rem;
+    padding: 3rem 2rem;
     border: 0.2rem solid gainsboro;
     border-radius: 2.5rem;
 }
 
 #welcome {
-    padding: 3rem 2rem;
 }
 
-#title {
+h1 {
     margin-bottom: 2rem;
 }
 
@@ -51,5 +51,32 @@ body {
     color: #ffffff;
     border: none;
     border-radius: 0.5rem;
+    cursor: pointer;
+}
 
+#questions {
+    display: none;
+}
+
+#question {
+    margin-bottom: 1rem;
+}
+
+#options {
+    list-style: none;
+    margin-bottom: 1rem;
+}
+
+#options li {
+    line-height: 2rem;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 1.2rem;
+    background: #218380;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+#result {
+    margin: 1rem 0;
 }

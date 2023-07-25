@@ -38,3 +38,68 @@ const questions = [
     answer: "1. break",
   },
 ];
+
+const startBtn = document.getElementById('start-btn');
+const span = document.getElementById('counter');
+const optionLIAll = document.querySelectorAll('.option');
+let remainingTime = 50;
+let currentQuestionIndex = -1;
+
+startBtn.addEventListener('click', function() {
+  span.textContent = remainingTime;
+  changeCards();
+  setInterval(updateTime, 1000);
+  displayNextQuestion();
+});
+
+optionLIAll.forEach((li) => {
+  li.addEventListener('click', () => {
+    const chosenAnswer = li.innerText;
+    if (isCorrect(chosenAnswer, currentQuestionIndex)) {
+      console.log(true);
+    }
+  })
+});
+
+function isCorrect(answer, questionIndex) {
+  return answer === questions[questionIndex]['answer'];
+}
+
+ function updateTime() {
+        if (remainingTime === 0) return;
+        remainingTime--;
+        span.textContent = remainingTime;
+  }
+
+  
+  function displayNextQuestion() {
+    currentQuestionIndex++;
+    if (currentQuestionIndex >= questions.length) return;
+
+    displayCurrentQuestion();
+}
+
+function displayCurrentQuestion() {
+    const questionContainer = document.getElementById("questions");
+    const currentQuestion = questions[currentQuestionIndex];
+    const theQuestion = currentQuestion['questionText'];
+    const theOptions = currentQuestion['options'];
+    const option1 = theOptions[0];
+    const option2 = theOptions[1];
+    const option3 = theOptions[2];
+    const option4 = theOptions[3];
+    const correctAnswer = currentQuestion['answer'];
+
+    questionContainer.querySelector('#question-text').textContent = theQuestion;
+    questionContainer.querySelector('#option1').textContent = option1;
+    questionContainer.querySelector('#option2').textContent = option2;
+    questionContainer.querySelector('#option3').textContent = option3;
+    questionContainer.querySelector('#option4').textContent = option4;
+}
+
+function changeCards() {
+  document.getElementById('welcome').style.display = 'none';
+  document.getElementById('questions').style.display = 'block';
+}
+
+

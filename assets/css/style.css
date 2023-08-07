@@ -21,6 +21,10 @@ body {
     padding: 2rem 5rem;
 }
 
+#leaderboard {
+    cursor: pointer;
+}
+
 #card {
     width: 80rem;
     margin: auto;
@@ -31,6 +35,15 @@ body {
 }
 
 #welcome {
+    
+}
+
+#highscores {
+    display: none;
+}
+
+#all-done {
+ display: none;   
 }
 
 h1 {
@@ -45,7 +58,7 @@ h1 {
     margin-bottom: 1rem;
 }
 
-#start-btn {
+button {
     padding: 1rem;
     background: #218380;
     color: #ffffff;
@@ -79,4 +92,21 @@ h1 {
 
 #result {
     margin: 1rem 0;
+}
+
+#correct {
+    display: none;
+}
+
+#incorrect {
+    display: none;
+}
+
+#all-done p {
+    padding-bottom: 1rem;
+}
+
+#initials {
+    width: 10rem;
+    height: 3rem;
 }

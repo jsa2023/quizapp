@@ -39,6 +39,7 @@ const questions = [
   },
 ];
 
+const counterEl = document.getElementById('counter');
 const cardsEl = document.getElementById('card');
 const leaderBoardEl = document.getElementById('leaderboard');
 const highscoresEl = document.getElementById('highscores');
@@ -49,8 +50,12 @@ const startBtn = document.getElementById('start-btn');
 const correctMessageEl = document.getElementById('correct');
 const incorrectMessageEl = document.getElementById('incorrect');
 const back = document.getElementById('back');
-const span = document.getElementById('counter');
 const optionLIAll = document.querySelectorAll('.option');
+const scoreEl = document.getElementById('score');
+const initialsEl = document.getElementById('initials');
+const submitBtn = document.getElementById('submit-score-btn');
+const scoreListEl = document.getElementById('score-list');
+let interval;
 let remainingTime = 50;
 let currentQuestionIndex = -1;
 let questionsAnswered = 0;
@@ -61,12 +66,9 @@ back.addEventListener('click', function() {
   highscores.style.display = 'none';
   welcomeEl.style.display = 'block';
   cardsEl.style.width = '80rem';
-  disableLeaderBoard();
 });
 
 startBtn.addEventListener('click', startQuiz);
-
-
 
 optionLIAll.forEach((li) => {
   li.addEventListener('click', () => {
@@ -77,6 +79,7 @@ optionLIAll.forEach((li) => {
     }
     else {
       document.getElementById('incorrect').style.display = 'block';
+      remainingTime -= 9;
     };
     questionsAnswered += 1;
     setTimeout(function() {
@@ -85,12 +88,39 @@ optionLIAll.forEach((li) => {
           cardsEl.style.width = '45rem';
           cardsEl.style.padding = '3rem 4rem';
           allDoneEl.style.display = 'block';
+          getScore();
+          stopCounter();
         }
         else {
-        remainingTime -= 9;
         displayNextQuestion();
       }
         }
         , 1000);
   });
+});
+
+submitBtn.addEventListener('click', function() {
+  const initials = initialsEl.value.trim();
+  const score = scoreEl.innerText;
+
+  if (initials.length === 2) {
+    // Save initials and score to local storage
+    console.log('if loop working');
+    localStorage.setItem('initials', initials);
+    localStorage.setItem('score', score);
+
+    // Create a new <li> element with initials and score
+    const listItem = document.createElement('li');
+    listItem.textContent = `${initials} - ${score}`;
+
+    // Append the <li> element to the <ol> element
+    scoreListEl.appendChild(listItem);
+
+    //Return to Start Quiz Block
+    allDoneEl.style.display = 'none';
+    cardsEl.style.width = '80rem';
+    welcomeEl.style.display = 'block';
+    leaderBoardEl.style.cursor = 'pointer';
+    leaderBoardEl.addEventListener('click', showHighscores);
+  }
 });

@@ -1,7 +1,7 @@
 function startQuiz() {
   counterEl.textContent = remainingTime;
   changeCards();
-  setInterval(updateTime, 1000);
+  interval = setInterval(updateTime, 1000);
   displayNextQuestion();
   leaderBoardEl.style.cursor = 'default';
   leaderBoardEl.removeEventListener('click', showHighscores);
@@ -10,7 +10,6 @@ function startQuiz() {
 function showHighscores() {
   welcomeEl.style.display = 'none';
   cardsEl.style.width = '25rem';
-  highscoresEl.style.cursor = 'pointer';
   highscoresEl.style.display = 'block';
 }
 
@@ -63,4 +62,13 @@ function resetMessages() {
 
 function isLastQuestionAnswered() {
   return questionsAnswered == questions.length;
+}
+
+function getScore() {
+  scoreEl.innerText = counterEl.textContent;
+}
+
+function stopCounter() {
+  clearInterval(interval);
+  counterEl.innerText = "";
 }

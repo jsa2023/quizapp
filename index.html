@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -40,10 +40,24 @@
                 <p id="correct">Correct!</p>
                 <p id="incorrect">Incorrect!</p>
             </div>
-
+        </div>
+        <div id="highscores">
+            <h1>Highscores</h1>
+            <ol id="score-list"> 
+            </ol>
+            <button id="back">Go back</button>
+            <button id="clear">Clear Highscores</button>
+        </div>
+        <div id="all-done">
+            <h1>All done!</h1>
+            <p>Your final score is: <span id="score"></span></p>
+            <label>Enter your initials</label>
+            <input type="text" id="initials" />
+            <button id="submit-score-btn">Submit</button>
         </div>
     </main>
-    <script src="assets/script.js"></script>
+    <script src="./assets/js/functions.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 
 </html>

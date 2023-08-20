@@ -1,2 +1,2 @@
-tabs: ['index.html', 'assets/css/style.css']
+tabs: ['index.html', 'assets/css/style.css', 'assets/js/script.js', 'assets/js/functions.js']
 terminal-one: static-server -p $PUBLIC_PORT --no-cache

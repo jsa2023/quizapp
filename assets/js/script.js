@@ -102,6 +102,7 @@ optionLIAll.forEach((li) => {
 submitBtn.addEventListener('click', function() {
   const initials = initialsEl.value.trim();
   const score = scoreEl.innerText;
+  scoreEl.innerText = '';
 
   if (initials.length === 2) {
     // Save initials and score to local storage

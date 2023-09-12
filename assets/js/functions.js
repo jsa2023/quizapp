@@ -76,6 +76,7 @@ function stopCounter() {
 function resetVariables() {
     currentQuestionIndex = -1;
     questionsAnswered = 0;
+    remainingTime = 50;
 }
 
 function returnToStartQuiz() {

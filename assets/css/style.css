@@ -35,11 +35,19 @@ body {
 }
 
 #welcome {
-    
 }
 
 #highscores {
     display: none;
+    padding: 3rem;
+}
+
+#highscores-list {
+    padding-left: 2rem;
+}
+
+#highscores-buttons {
+    margin-top: 1rem;
 }
 
 #all-done {

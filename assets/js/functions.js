@@ -1,82 +1,121 @@
-function startQuiz() {
-  counterEl.textContent = remainingTime;
-  changeCards();
-  interval = setInterval(updateTime, 1000);
-  displayNextQuestion();
-  leaderBoardEl.style.cursor = 'default';
-  leaderBoardEl.removeEventListener('click', showHighscores);
-}
+const questions = [
+  {
+    questionText: "Commonly used data types DO NOT include:",
+    options: ["1. strings", "2. booleans", "3. alerts", "4. numbers"],
+    answer: "3. alerts",
+  },
+  {
+    questionText: "Arrays in JavaScript can be used to store ______.",
+    options: [
+      "1. numbers and strings",
+      "2. other arrays",
+      "3. booleans",
+      "4. all of the above",
+    ],
+    answer: "4. all of the above",
+  },
+  {
+    questionText:
+      "String values must be enclosed within _____ when being assigned to variables.",
+    options: ["1. commas", "2. curly brackets", "3. quotes", "4. parentheses"],
+    answer: "3. quotes",
+  },
+  {
+    questionText:
+      "A very useful tool used during development and debugging for printing content to the debugger is:",
+    options: [
+      "1. JavaScript",
+      "2. terminal/bash",
+      "3. for loops",
+      "4. console.log",
+    ],
+    answer: "4. console.log",
+  },
+  {
+    questionText:
+      "Which of the following is a statement that can be used to terminate a loop, switch or label statement?",
+    options: ["1. break", "2. stop", "3. halt", "4. exit"],
+    answer: "1. break",
+  },
+];
 
-function showHighscores() {
-  welcomeEl.style.display = 'none';
-  cardsEl.style.width = '40rem';
-  highscoresEl.style.display = 'block';
-}
+const counterEl = document.getElementById('counter');
+const cardsEl = document.getElementById('card');
+const leaderBoardEl = document.getElementById('leaderboard');
+const highscoresEl = document.getElementById('highscores');
+const allDoneEl = document.getElementById('all-done');
+const welcomeEl = document.getElementById('welcome');
+const questionsEl = document.getElementById('questions');
+const startBtn = document.getElementById('start-btn');
+const correctMessageEl = document.getElementById('correct');
+const incorrectMessageEl = document.getElementById('incorrect');
+const back = document.getElementById('back');
+const clear = document.getElementById('clear');
+const optionLIAll = document.querySelectorAll('.option');
+const scoreEl = document.getElementById('score');
+const initialsEl = document.getElementById('initials');
+const submitBtn = document.getElementById('submit-score-btn');
+const scoreListEl = document.getElementById('highscores-list');
+let interval;
+let remainingTime = 50;
+let currentQuestionIndex = -1;
+let questionsAnswered = 0;
 
-function isCorrect(answer, questionIndex) {
-  return answer === questions[questionIndex]['answer'];
-}
+leaderBoardEl.addEventListener('click', showHighscores);
 
- function updateTime() {
-        if (remainingTime <= 0) {
-          return;
+back.addEventListener('click', returnToHomeScreen);
+
+clear.addEventListener('click', resetHighscores);
+
+startBtn.addEventListener('click', startQuiz);
+
+optionLIAll.forEach((li) => {
+  li.addEventListener('click', () => {
+    const chosenAnswer = li.innerText;
+    if (isCorrect(chosenAnswer, currentQuestionIndex)) {
+      //console.log(true);
+      document.getElementById('correct').style.display = 'block';
+    }
+    else {
+      document.getElementById('incorrect').style.display = 'block';
+      remainingTime -= 9;
+    };
+    questionsAnswered += 1;
+    setTimeout(function() {
+        if (isLastQuestionAnswered()) {
+          questionsEl.style.display = 'none';
+          cardsEl.style.width = '45rem';
+          cardsEl.style.padding = '3rem 4rem';
+          allDoneEl.style.display = 'block';
+          getScore();
+          stopCounter();
         }
-        remainingTime--;
-        counterEl.textContent = remainingTime;
+        else {
+        displayNextQuestion();
+      }
+        }
+        , 1000);
+  });
+});
+
+submitBtn.addEventListener('click', function() {
+  const initials = initialsEl.value.trim();
+  const score = scoreEl.innerText;
+
+  if (initials.length === 2) {
+    // Save initials and score to local storage
+    console.log('if statement working');
+    localStorage.setItem('initials', initials);
+    localStorage.setItem('score', score);
+
+    // Create a new <li> element with initials and score
+    const listItem = document.createElement('li');
+    listItem.textContent = `${initials} - ${score}`;
+
+    // Append the <li> element to the <ol> element
+    scoreListEl.appendChild(listItem);
+
+    //Return to Start Quiz Block
+    returnToStartQuiz();
   }
-
-  
-  function displayNextQuestion() {
-    currentQuestionIndex++;
-    if (currentQuestionIndex >= questions.length) return;
-    displayCurrentQuestion();
-}
-
-function displayCurrentQuestion() {
-    resetMessages();
-    const questionContainer = document.getElementById("questions");
-    const currentQuestion = questions[currentQuestionIndex];
-    const theQuestion = currentQuestion['questionText'];
-    const theOptions = currentQuestion['options'];
-    const option1 = theOptions[0];
-    const option2 = theOptions[1];
-    const option3 = theOptions[2];
-    const option4 = theOptions[3];
-
-    questionContainer.querySelector('#question-text').textContent = theQuestion;
-    questionContainer.querySelector('#option1').textContent = option1;
-    questionContainer.querySelector('#option2').textContent = option2;
-    questionContainer.querySelector('#option3').textContent = option3;
-    questionContainer.querySelector('#option4').textContent = option4;
-}
-
-function changeCards() {
-  welcomeEl.style.display = 'none';
-  questionsEl.style.display = 'block';
-}
-
-function resetMessages() {
-  correctMessageEl.style.display = 'none';
-  incorrectMessageEl.style.display = 'none';
-}
-
-function isLastQuestionAnswered() {
-  return questionsAnswered == questions.length;
-}
-
-function getScore() {
-  scoreEl.innerText = counterEl.textContent;
-}
-
-function stopCounter() {
-  clearInterval(interval);
-  counterEl.innerText = "";
-}
-
-function returnToStartQuiz() {
-    allDoneEl.style.display = 'none';
-    cardsEl.style.width = '80rem';
-    welcomeEl.style.display = 'block';
-    leaderBoardEl.style.cursor = 'pointer';
-    leaderBoardEl.addEventListener('click', showHighscores);
-}
+});

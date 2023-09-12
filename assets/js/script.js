@@ -50,6 +50,7 @@ const startBtn = document.getElementById('start-btn');
 const correctMessageEl = document.getElementById('correct');
 const incorrectMessageEl = document.getElementById('incorrect');
 const back = document.getElementById('back');
+const clear = document.getElementById('clear');
 const optionLIAll = document.querySelectorAll('.option');
 const scoreEl = document.getElementById('score');
 const initialsEl = document.getElementById('initials');
@@ -62,11 +63,9 @@ let questionsAnswered = 0;
 
 leaderBoardEl.addEventListener('click', showHighscores);
 
-back.addEventListener('click', function() {
-  highscores.style.display = 'none';
-  welcomeEl.style.display = 'block';
-  cardsEl.style.width = '80rem';
-});
+back.addEventListener('click', returnToHomeScreen);
+
+clear.addEventListener('click', resetHighscores);
 
 startBtn.addEventListener('click', startQuiz);
 

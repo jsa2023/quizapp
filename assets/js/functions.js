@@ -9,7 +9,7 @@ function startQuiz() {
 
 function showHighscores() {
   welcomeEl.style.display = 'none';
-  cardsEl.style.width = '40rem';
+  cardsEl.style.width = '25rem';
   highscoresEl.style.display = 'block';
 }
 

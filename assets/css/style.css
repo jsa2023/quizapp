@@ -35,10 +35,10 @@ body {
 }
 
 #welcome {
+    display: none;
 }
 
 #highscores {
-    display: none;
     padding: 3rem;
 }
 

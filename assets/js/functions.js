@@ -72,3 +72,11 @@ function stopCounter() {
   clearInterval(interval);
   counterEl.innerText = "";
 }
+
+function returnToStartQuiz() {
+    allDoneEl.style.display = 'none';
+    cardsEl.style.width = '80rem';
+    welcomeEl.style.display = 'block';
+    leaderBoardEl.style.cursor = 'pointer';
+    leaderBoardEl.addEventListener('click', showHighscores);
+}

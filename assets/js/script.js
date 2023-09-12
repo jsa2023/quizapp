@@ -54,7 +54,7 @@ const optionLIAll = document.querySelectorAll('.option');
 const scoreEl = document.getElementById('score');
 const initialsEl = document.getElementById('initials');
 const submitBtn = document.getElementById('submit-score-btn');
-const scoreListEl = document.getElementById('score-list');
+const scoreListEl = document.getElementById('highscores-list');
 let interval;
 let remainingTime = 50;
 let currentQuestionIndex = -1;
@@ -105,7 +105,7 @@ submitBtn.addEventListener('click', function() {
 
   if (initials.length === 2) {
     // Save initials and score to local storage
-    console.log('if loop working');
+    console.log('if statement working');
     localStorage.setItem('initials', initials);
     localStorage.setItem('score', score);
 
@@ -117,10 +117,6 @@ submitBtn.addEventListener('click', function() {
     scoreListEl.appendChild(listItem);
 
     //Return to Start Quiz Block
-    allDoneEl.style.display = 'none';
-    cardsEl.style.width = '80rem';
-    welcomeEl.style.display = 'block';
-    leaderBoardEl.style.cursor = 'pointer';
-    leaderBoardEl.addEventListener('click', showHighscores);
+    returnToStartQuiz();
   }
 });

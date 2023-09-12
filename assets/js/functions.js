@@ -89,6 +89,6 @@ function returnToHomeScreen() {
 
 function resetHighscores() {
     localStorage.clear();
-    scoresListEl.innerHTML = '';
+    scoreListEl.innerHTML = '';
     returnToHomeScreen();
 }

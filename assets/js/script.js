@@ -89,6 +89,7 @@ optionLIAll.forEach((li) => {
           allDoneEl.style.display = 'block';
           getScore();
           stopCounter();
+          resetVariables();
         }
         else {
         displayNextQuestion();

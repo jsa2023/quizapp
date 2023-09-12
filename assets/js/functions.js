@@ -73,6 +73,11 @@ function stopCounter() {
   counterEl.innerText = "";
 }
 
+function resetVariables() {
+    currentQuestionIndex = -1;
+    questionsAnswered = 0;
+}
+
 function returnToStartQuiz() {
     allDoneEl.style.display = 'none';
     cardsEl.style.width = '80rem';
